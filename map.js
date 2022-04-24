@@ -5,10 +5,10 @@ var svg = d3.select("svg"),
 // Map and projection
 var projection = d3.geoNaturalEarth1()
     .scale(width / 1.3 / Math.PI)
-    .translate([width / 2, height / 2])
+    .translate([width / 3, height / 3])
 
 // Load external data and boot
-d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson", function(data){
+d3.json("latam.geojson", function(data){
 
     // Draw the map
     svg.append("g")
