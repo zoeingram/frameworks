@@ -11,3 +11,6 @@
     background: black;
     color: white;
 }
+.hide {
+    display: none;
+}
