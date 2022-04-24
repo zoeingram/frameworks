@@ -1,0 +1,13 @@
+* {
+    font-family: "Maven Pro";
+}
+.menu-button {
+    background: none;
+    border-radius: 0;
+    border: 1px solid black;
+    text-transform: uppercase;
+}
+.menu-button:hover {
+    background: black;
+    color: white;
+}
