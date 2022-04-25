@@ -6,6 +6,7 @@
     border-radius: 0;
     border: 1px solid black;
     text-transform: uppercase;
+    padding: 10px 30px;
 }
 .menu-button:hover {
     background: black;
