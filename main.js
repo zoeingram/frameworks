@@ -11,6 +11,10 @@ $( "#manifestoButton" ).click(function() {
         $( "#manifestoTextEnglish" ).hide(function() {
             manifestoEnglishDisplay = false;
         });
+        $( "#manifestoTranslate" ).hide(function() {
+        });
+        
+
     } else {
         $( "#manifestoTextSpanish" ).show(function() {
             manifestoSpanishDisplay = true;
@@ -19,6 +23,7 @@ $( "#manifestoButton" ).click(function() {
         });
     }
   });
+
 
 $( "#mapButton" ).click(function() {
     $( "#mapVisual" ).toggle(function() {

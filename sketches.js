@@ -1,26 +1,65 @@
+const xyArr = [];
+const colors = ['rgba(204, 39, 25, .75)', 'rgba(235, 199, 116, .75)', 'rgba(73, 156, 183, .75)', 'rgba(29, 76, 165, .75)'];
+let timer = 0;
 
-let startColor = 255;
-let speedAnimate = 1;
+let content = 'DIAFONO | CON TRANSPARENCIA HAY FUTURO'; //variable for text string
+let xStart = 0; //starting position of the text wall
+let customFont; //variable for custom font
+
+
+function getXYs() {
+    for (let i = 0; i < 5; i++) {
+        let x = innerWidth/10 + Math.floor(Math.random() * 250) + (Math.random() *100);
+        let y = innerHeight/10 + Math.floor(Math.random() * 400);
+        let s = Math.random();
+        var color = colors[Math.floor(Math.random()*colors.length)];
+        xyArr.push([x, y, s, color])
+    }
+}
+
 function setup() {
-  createCanvas(400, 400);
-  noStroke();
+  createCanvas(innerWidth, innerHeight);    
+  getXYs();
+  textFont('Space Mono');
+  textAlign(CENTER, CENTER); //adjust the anchor point of text alignment to the horizontal and vertical centers
+  textSize(18); //make the text 20 pixels in size
 }
 
-function draw() {
+function draw() {+
   background(255);
-  
-  if(startColor > width + 255 || startColor < 255) {
-    speedAnimate *= -1;
-  }
-  startColor += speedAnimate;
-  
-  let gap = 1;
-  let numRectangles = 20;
-  let rectWidth = width / numRectangles;
-  for (let x = 0; x < width; x += gap + rectWidth) {
-    let green = startColor - x;
-    let red = 255;
-    fill(red, green, 0);
-    rect(x, 0, rectWidth, height)
-  }
+    xyArr.forEach(item=> {
+        hexagon(item[0], item[1], item[2], item[3]);
+    });
+    scrollingText();
+    // if (millis() >= 2000+timer) {
+    //     getXYs();
+    //     timer = millis();
+    //   }
 }
+
+function scrollingText() {
+    for (let x = xStart; x < width; x += 450) { //use a for loop to draw the line of text multiple times down the vertical axis
+        // fill(255, y / 4 + 100, 200); //create a gradient by associating the fill color with the y location of the text
+        fill(0);
+        noStroke()
+        text(content, x + 20, 50); //display text
+      }
+      xStart--; //move the starting point of the loop up to create the scrolling animation, yStart-- is the same as yStart = yStart -1 or yStart-=1
+    
+}
+function hexagon(transX, transY, s, color) {
+    strokeWeight(3);
+    fill(color);
+    push();
+    translate(transX, transY);
+    scale(s);
+    beginShape();
+      vertex(-75, -130);
+      vertex(75, -130);
+      vertex(150, 0);
+      vertex(75, 130);
+    vertex(-75, 130);
+      vertex(-150, 0);
+      endShape(CLOSE); 
+      pop();
+  }
