@@ -5,11 +5,11 @@ let timer = 0;
 let content = 'DIAFONO | CON TRANSPARENCIA HAY FUTURO'; //variable for text string
 let xStart = 0; //starting position of the text wall
 let customFont; //variable for custom font
-
+let c1, c2;
 
 function getXYs() {
     for (let i = 0; i < 5; i++) {
-        let x = innerWidth/10 + Math.floor(Math.random() * 250) + (Math.random() *100);
+        let x = innerWidth/10 + Math.floor(Math.random() * 400) + (Math.random() *100);
         let y = innerHeight/10 + Math.floor(Math.random() * 400);
         let s = Math.random();
         var color = colors[Math.floor(Math.random()*colors.length)];
@@ -18,16 +18,20 @@ function getXYs() {
 }
 
 function setup() {
-  createCanvas(innerWidth, innerHeight);    
+  let cnv = createCanvas(innerWidth, innerHeight); 
   getXYs();
   textFont('Space Mono');
-  textAlign(CENTER, CENTER); //adjust the anchor point of text alignment to the horizontal and vertical centers
-  textSize(18); //make the text 20 pixels in size
+  textAlign(CENTER, CENTER); 
+  textSize(18); 
+  cnv.parent('#bkSketch');
+  c1 = color(235, 199, 116);
+  c2 = color(73, 156, 183);
+
 }
 
-function draw() {+
-  background(255);
-    xyArr.forEach(item=> {
+function draw() { 
+  setGradient(c1, c2);    
+  xyArr.forEach(item=> {
         hexagon(item[0], item[1], item[2], item[3]);
     });
     scrollingText();
@@ -48,8 +52,8 @@ function scrollingText() {
     
 }
 function hexagon(transX, transY, s, color) {
-    strokeWeight(3);
-    fill(color);
+  noStroke()
+  fill(color);
     push();
     translate(transX, transY);
     scale(s);
@@ -62,4 +66,15 @@ function hexagon(transX, transY, s, color) {
       vertex(-150, 0);
       endShape(CLOSE); 
       pop();
+  }
+
+  function setGradient(c1, c2) {
+    // noprotect
+    noFill();
+    for (var y = 0; y < height; y++) {
+      var inter = map(y, 0, height, 0, 1);
+      var c = lerpColor(c1, c2, inter);
+      stroke(c);
+      line(0, y, width, y);
+    }
   }

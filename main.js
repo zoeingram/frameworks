@@ -3,6 +3,7 @@ let manifestoEnglishDisplay = false;
 
 
 
+
 $( "#manifestoButton" ).click(function() {
     if (manifestoEnglishDisplay == true || manifestoSpanishDisplay == true) {
         $( "#manifestoTextSpanish" ).hide(function() {
@@ -19,9 +20,10 @@ $( "#manifestoButton" ).click(function() {
         $( "#manifestoTextSpanish" ).show(function() {
             manifestoSpanishDisplay = true;
         });
-        $( "#manifestoTranslate" ).toggle(function() {
+        $( "#manifestoTranslate" ).show(function() {
         });
     }
+ 
   });
 
 
@@ -41,3 +43,8 @@ $( "#manifestoTranslate" ).click(function() {
         manifestoEnglishDisplay = true;
     });
 });
+
+
+$("#exchangeButton").click(function() {
+    $("#exchangeContent").show(function() {});
+})
